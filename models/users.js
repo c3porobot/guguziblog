@@ -9,7 +9,7 @@ module.exports = {
   // 通过用户名获取用户信息
   getUserByName: function getUserByName(name) {
     return User
-      .findOne({ name: name})
+      .findOne({ name: name })
       .addCreatedAt() //这里我们使用了 addCreatedAt 自定义插件（通过 _id 生成时间戳)
       .exec();
   }

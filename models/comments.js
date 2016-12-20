@@ -31,7 +31,7 @@ module.exports = {
   getComments: function getComments(postId) {
     return Comment
       .find({ postId: postId })
-      .populate({ path: 'author', model: 'User'})
+      .populate({ path: 'author', model: 'User' })
       .sort({ _id: 1 })
       .addCreatedAt()
       .contentToHtml()
@@ -40,6 +40,6 @@ module.exports = {
 
   // 通过文章 id 获取该文章下留言数
   getCommentsCount: function getCommentsCount(postId) {
-    return Comment.count({ postId: postId}).exec();
+    return Comment.count({ postId: postId }).exec();
   }
 };

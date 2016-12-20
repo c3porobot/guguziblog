@@ -1,11 +1,11 @@
 {
-  "name": "Guguzi'sBlog",
+  "name": "guguziblog",
   "version": "1.0.0",
   "description": "越努力, 越幸运!",
   "main": "index.js",
   "scripts": {
-    "test": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha", 
-    "start": "NODE_ENV=production pm2 start index.js --node-args='--harmony' --name 'Guguzi'sBlog"
+    "test": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
+    "start": "NODE_ENV=production pm2 start index.js --node-args='--harmony' --name 'guguziblog'"
   },
   "author": "",
   "license": "ISC",

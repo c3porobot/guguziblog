@@ -53,32 +53,32 @@ module.exports = {
     .addCreatedAt()
     .contentToHtml()
     .addCreatedAt()
+    .addCommentsCount()
     .exec();
   },
 
   // 按创建时间降序获取所有用户文章或者某个特定用户的所有文章
   getPosts: function getPosts(author) {
-    var query = {
-      _id: -1,
-    };
+    var query = {};
     if (author) {
       query.author = author;
     }
-    console.log('***************', author);
+
     return Post
     .find(query)
     .populate({ path: 'author', model: 'User' })
-    .sort({ _id: -1})
+    .sort({ _id: -1 })
     .addCreatedAt()
-    .contentToHtml()
     .addCommentsCount()
+    .contentToHtml()
     .exec();
   },
 
   //通过文章 id 给 pv 加 1
   incPv: function incPv(postId) {
     return Post
-    .update({ _id: postId }, { $inc: { pv: 1} })
+    .update({ _id: postId }, { $inc: { pv: 1 } })
+    .exec();
   },
 
   getRawPostById: function getRawPostById(postId) { //：我们通过新函数 getRawPostById 用来获取文章原生的内容，而不是用 getPostById 返回将 markdown 转换成 html 后的内容。
@@ -100,7 +100,7 @@ module.exports = {
       .then(function (res) {
         //文章删除后, 再删除该文章下的所有留言
         if (res.result.ok && res.result.n > 0) {
-          return CommentModel.delCommentsByPostId(postId)
+          return CommentModel.delCommentsByPostId(postId);
         }
       });
   }

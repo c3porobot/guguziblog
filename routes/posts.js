@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
   var author = req.query.author;
 
   PostModel.getPosts(author)
-    .then(function (posts){
+    .then(function (posts) {
       res.render('posts', {
         posts: posts
       });
@@ -139,9 +139,9 @@ router.get('/:postId/remove', function(req, res, next){
 });
 
 //POST /posts/:postId/comment 创建一条留言
-router.post('/:postId/comment', function(req, res, next){
-  var postId = req.params.postId;
+router.post('/:postId/comment', checkLogin, function(req, res, next){
   var author = req.session.user._id;
+  var postId = req.params.postId;
   var content = req.fields.content;
   var comment = {
     author: author,
@@ -159,7 +159,7 @@ router.post('/:postId/comment', function(req, res, next){
 });
 
 //GET /posts/:postId/comment/:commentId/remove 删除一条留言
-router.get('/:postId/comment/:commentId/remove', function(req, res, next){
+router.get('/:postId/comment/:commentId/remove', checkLogin, function(req, res, next){
   var commentId = req.params.commentId;
   var author = req.session.user._id;
 
